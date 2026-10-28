@@ -4,9 +4,8 @@
 #
 #   mise trust && mise run setup
 #
-# Do not also run `corepack enable`: mise reads the pnpm version from
-# package.json "packageManager" and installs it itself. It does not verify
-# that field's sha512, so keep corepack if you want artifact verification.
+# Do not also run `corepack enable`: mise reads the pnpm version and verifies
+# the Corepack-style checksum from package.json "packageManager".
 
 [tools]
 node = "24"
@@ -19,7 +18,7 @@ idiomatic_version_file_enable_tools = ["pnpm"]
 
 [tasks.setup]
 description = "Install the pinned toolchains and project dependencies"
-run = ["mise install", "pnpm install"]
+run = ["mise install", "mise exec -- pnpm install"]
 
 [tasks.dev]
 description = "Run the desktop app in development mode"

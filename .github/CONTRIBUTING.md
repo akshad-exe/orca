@@ -61,21 +61,21 @@ Bun 1.4.4 (matching [`config/.bun-version`](../config/.bun-version)), and reads 
 
 ```bash
 mise trust
-mise run setup     # mise install + pnpm install
+mise run setup     # mise install + mise exec -- pnpm install
 mise run dev
 ```
 
-| Task             | Runs                                |
-| ---------------- | ----------------------------------- |
-| `mise run setup` | `mise install` then `pnpm install`  |
-| `mise run dev`   | `pnpm dev`                          |
-| `mise run check` | `pnpm check:changed --maxWorkers=2` |
-| `mise run test`  | `pnpm test:changed --maxWorkers=2`  |
+| Task             | Runs                                             |
+| ---------------- | ------------------------------------------------ |
+| `mise run setup` | `mise install` then `mise exec -- pnpm install` |
+| `mise run dev`   | `pnpm dev`                                       |
+| `mise run check` | `pnpm check:changed --maxWorkers=2`              |
+| `mise run test`  | `pnpm test:changed --maxWorkers=2`               |
 
 Use one package-manager source, not both: with mise, skip `corepack enable`. mise installs the
-pinned pnpm version but does not verify the sha512 in `packageManager`, so corepack stays the
-stricter option. The native toolchain, Docker on Linux, and `xvfb` are still required — mise only
-manages tool versions and task shortcuts.
+pinned pnpm version and verifies the Corepack-style checksum in `packageManager`. The native
+toolchain, Docker on Linux, and `xvfb` are still required — mise only manages tool versions and task
+shortcuts.
 
 ### Dev Profiles and Parallel Instances
 
